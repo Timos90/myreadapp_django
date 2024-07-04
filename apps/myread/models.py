@@ -57,6 +57,9 @@ class MyRead(models.Model):
 
         ]
 
+    def __str__(self) ->str:
+        return f"Reader: {self.reader_username}--Book: {self.book_isbn}--progress({self.percentage_read}%)"
+
 
 class StatusPercent(models.Model):
     SP_CHOICE ={
@@ -78,3 +81,7 @@ class StatusPercent(models.Model):
                 check=models.Q(read_status__in=['pending', 'reading', 'done'])
             )
         ]
+
+    def __str__(self) ->str:
+        return f"{self.percentage_read_range}({self.read_status})"
+    
