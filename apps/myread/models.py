@@ -16,6 +16,7 @@ class MyRead(models.Model):
     end_read_date = models.DateField(null=True, blank=True)
 
     class Meta:
+        unique_together = ('book_isbn', 'reader_username', 'start_read_date')
         constraints = [
             models.CheckConstraint(
                 name='%(app_label)s_%(class)s_per_read_check',
@@ -75,6 +76,7 @@ class StatusPercent(models.Model):
     read_status = models.CharField(max_length=10, choices=SP_CHOICE, default='pending')
 
     class Meta:
+        verbose_name_plural = 'Status Percentages'
         constraints = [
             models.CheckConstraint(
                 name='%(app_label)s_%(class)s_read_status_check',

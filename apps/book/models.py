@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField # Postgresql specific
+from apps.core.models import CreatedModifiedAbstract
 
 # Create your models here.
 
@@ -34,8 +35,11 @@ class BookAuthor(models.Model):
 
     def __str__(self) -> str:
         return f'{self.author} {self.role} {self.book}'
+ 
+    class Meta:
+        verbose_name_plural = 'Books and Authors'
 
-class Book(models.Model):
+class Book(CreatedModifiedAbstract):
     BOOK_CATEGORY = {
         "pr": "programming",
         "ar": "art",
@@ -55,11 +59,11 @@ class Book(models.Model):
     published_date = models.IntegerField()
     publisher = models.CharField(max_length=50)
     #authors = ArrayField(ArrayField(models.CharField(max_length=50)))
-    authors = models.ManyToManyField('book.Author',related_name='book', through='book.BookAuthor')
+    authors = models.ManyToManyField('book.Author', through='book.BookAuthor')
     language = models.CharField(max_length=50)
     edition = models.SmallIntegerField(null=True, blank=True)
     book_format = models.CharField(max_length=2, choices=BOOK_FORMAT, default='eb')
-    tags = models.ManyToManyField('book.Tag', related_name='book')
+    tags = models.ManyToManyField('book.Tag')
 
     # Override objects with now Manager
     objects = BookManager()
@@ -75,4 +79,8 @@ class Book(models.Model):
 
     def __str__(self) ->str:
         return f"{self.title}({self.published_date})"
+    
+    class Meta:
+        # <app>_<model> (so not to have related name on everything above and be repeated)
+        default_related_name = '%(app_label)s_%(model_name)s'
     

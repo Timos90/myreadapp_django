@@ -18,6 +18,10 @@ class NIC(models.Model):
     def __str__(self) -> str:
         return f'{self.nic_number}(del: {self.delivery_date}, exp: {self.expiration_date})'
 
+    class Meta:
+        db_table_comment = 'National Identity Card'
+        verbose_name_plural = 'NIC'
+
 # Reader -> AbstractUser -> AbstractBaseUser -> models.Model
 class Reader(AbstractUser):# instead of Reader(models.Model)
     READER_TITLE = {
@@ -41,6 +45,7 @@ class Reader(AbstractUser):# instead of Reader(models.Model)
     nic = models.OneToOneField('reader.NIC', related_name='reader', on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
+        db_table = 'reader'
         # Define some meta data, including constraints
         constraints = [
             models.CheckConstraint(
