@@ -35,7 +35,7 @@ class BookAuthor(models.Model):
 
     def __str__(self) -> str:
         return f'{self.author} {self.role} {self.book}'
- 
+
     class Meta:
         verbose_name_plural = 'Books and Authors'
 
@@ -79,7 +79,7 @@ class Book(CreatedModifiedAbstract):
 
     def __str__(self) ->str:
         return f"{self.title}({self.published_date})"
-    
+
     class Meta:
         # <app>_<model> (so not to have related name on everything above and be repeated)
         default_related_name = '%(app_label)s_%(model_name)s'

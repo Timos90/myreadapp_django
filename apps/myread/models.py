@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.postgres.fields import IntegerRangeField
+from apps.core.models import CreatedModifiedAbstract
 from django.contrib.postgres.validators import (
     RangeMaxValueValidator,
     RangeMinValueValidator
 )
 # Create your models here.
 
-class MyRead(models.Model):
+class MyRead(CreatedModifiedAbstract):
     book_isbn = models.ForeignKey('book.Book', on_delete=models.CASCADE) # <app-name>.<class>
     reader_username = models.ForeignKey('reader.Reader', on_delete=models.CASCADE)
     # PositiveSmallIntegerField by default creates a check key with the name:
