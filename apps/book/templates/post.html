@@ -1,0 +1,96 @@
+{% extends "base.html" %} <!--inherit. Should be the first thing-->
+{% load static %}
+{% block title %}{{block.super}} - Post{% endblock title %}
+
+{% block stylesheet %}
+    {{block.super}}
+    <link rel='stylesheet' href="{% static 'css/form.css' %}" />
+{% endblock stylesheet %}
+
+{% block content %}
+<h1>Share your book</h1>
+<div class='post-form'>
+    <form method='post'>
+        {% csrf_token %}
+        <div class='form-element'>
+            <label for='isbn_input'>isbn:</label>
+            <input 
+                id='isbn_input',
+                name='isbn_input',
+                type='text',
+                value='',
+                placeholder='Enter isbn'
+            />
+        </div>
+        <div class='form-element'>
+            <label for='title_input'>Title:</label>
+            <input 
+                id='title_input',
+                name='title_input',
+                type='text',
+                value='',
+                placeholder='Enter Title'
+            />
+        </div>
+        <div class='form-element'>
+            <label for='pages_input'>pages:</label>
+            <input 
+                id='pages_input',
+                name='pages_input',
+                type='number',
+                value='',
+                placeholder='Enter pages'
+            />
+        </div>
+        <div class='form-element'>
+            <label for='description_input'>description:</label>
+            <textarea 
+                id='description_input',
+                name='description_input',
+                type='textarea',
+                value='',
+                placeholder='Enter description'
+            ></textarea>
+        </div>
+        <div class='form-cat'>
+            <hr />
+            <h4>Categories</h4>
+            <div>
+                <input
+                    id='cat_prog_radio',
+                    type='radio',
+                    value='pr'
+                />
+                <label for='cat_hist_radio'>Programming</label>
+            </div>
+            <div>
+                <input
+                    id='cat_hist_radio',
+                    type='radio',
+                    value='hi'
+                />
+                <label for='cat_hist_radio'>History</label>
+            </div>
+            <div>
+                <input
+                    id='cat_art_radio',
+                    type='radio',
+                    value='ar'
+                />
+                <label for='cat_art_radio'>Art</label>
+            </div>
+        
+
+        </div>
+        <input type='submit' value='Submit' />
+
+    </form>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+

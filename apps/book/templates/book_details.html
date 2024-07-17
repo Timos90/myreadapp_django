@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% comment %} inherit.should be the first thing {% endcomment %}
+{% load custom_tags %} {% comment %} import {% endcomment %}
+
+{% block title %}{{block.super}} - {{book.title}}{% endblock title %}
+
+{% block content %}
+    <h1>{{book.title}}</h1>
+    <p><b>isbn</b>: {{book.isbn}}</p>
+    <p><b>Description</b>: {{book.description}}</p>
+    <p><b>Pages</b>: {{book.page_count}}</p>
+    <p><b>Published</b>: {{book.published_date}}</p>
+    <p><b>Publisher</b>: {{book.publisher}}</p>
+    <p><b>Author</b>: {{book.authors.all|extract_tags_and_authors|semi_colon_seperator}}</p>
+    <p><b>Language</b>: {{book.language}}</p>
+    <p><b>Edition</b>: {{book.edition}}</p>
+    <p><b>Category</b>: {{book.category}}</p>
+    <p><b>Format</b>: {{book.book_format}}</p>
+    <p><b>Tags</b>: {{book.tags.all|extract_tags_and_authors|semi_colon_seperator}}</p>
+{% endblock content %}

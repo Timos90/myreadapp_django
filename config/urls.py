@@ -16,8 +16,19 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+#from apps.myread.views import home_page, HomePage
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # path(url, view, name)
+    # name = unique identifier for the path
+    #path('', home_page, name='home-page'),
+    # as_view() makes the class callable
+    #path('home/', HomePage.as_view(), name='home-page-two')
+
+    # Include all urls from myread
+    path("", include('apps.myread.urls', namespace='myread-urls')),
+    path("", include("apps.book.urls", namespace='book-urls'))
 ]

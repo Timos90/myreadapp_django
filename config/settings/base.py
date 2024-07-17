@@ -40,7 +40,11 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        # You want to explicit on the location of your template
+        "DIRS": [str(BASE_DIR/'core' / 'templates')],
+        # Django will search for templates in each app that is
+        # registered in the INSTALLED_APPS
+        # It will look for a specific folder called 'templates'
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -87,7 +91,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
