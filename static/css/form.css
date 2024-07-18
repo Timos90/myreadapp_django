@@ -11,6 +11,7 @@
 
 .post-form input[type="text"],
 .post-form input[type="number"],
+.post-form input[type="password"],
 .post-form textarea,
 .post-form select {
     width: 100%;

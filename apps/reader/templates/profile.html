@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{block.super}} - Profile{% endblock title %}
+
+
+{% block content %}
+
+<h1 class='head'>Welcome {{request.user.username}}</h1>
+
+    <div class='viewed-books'>
+        <h3>Viewed Books</h3>
+
+        {% for book_isbn, book_title in request.session.viewed_books %}
+            <a href={% url "book-urls:book-detail" isbn=book_isbn %}>{{book_title}}</a><br />
+
+            {% empty %}
+                <p>No recently viewed any book</p>
+
+        {% endfor %}
+
+{% endblock content %}

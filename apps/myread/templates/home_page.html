@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyRead App</title>
-</head>
-<body>
+{% extends "base.html" %} <!-- Inherit from base.html -->
+
+{% block title %}Home - {{ block.super }}{% endblock title %} 
+
+{% block content %}
     <h1>Welcome to MyRead App</h1>
         <p>{{total_readers_cnt}} total reader{{total_readers_cnt|pluralize}} and counting!</p>
         <p>{{engaged_reader_cnt}} engaged reader{{engaged_reader_cnt|pluralize}} and counting!</p>
-            
+    
     <h2>Book count per category</h2>
         <ul>
             {% for book_cnt in book_per_cat_cnt %}
-            <li>{{book_cnt.category}}: {{book_cnt.cnt}}</li>
+                <li>{{book_cnt.category}}: {{book_cnt.cnt}}</li>
             {% endfor %}
         </ul>
-</body>
-</html>
+{% endblock content %}
